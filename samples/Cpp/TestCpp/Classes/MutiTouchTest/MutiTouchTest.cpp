@@ -71,6 +71,59 @@ static Dictionary s_dic;
 
 void MutiTouchTestLayer::onTouchesBegan(const std::vector<Touch*>& touches, Event  *event)
 {
+    Director::getInstance()->getTouchDispatcher()->addStandardDelegate(this, 0);
+}
+
+#ifdef CC_PLATFORM_TIZEN
+
+void MutiTouchTestLayer::ccTouchesBegan(Set *touches, Event *pEvent)
+{
+    SetIterator iter = touches->begin();
+    for (; iter != touches->end(); iter++)
+    {
+        Touch* touch = (Touch*)(*iter);
+        TouchPoint* touchPoint = TouchPoint::touchPointWithParent(this);
+        Point location = touch->getLocation();
+
+        touchPoint->setTouchPos(location);
+        touchPoint->setTouchColor(*s_TouchColors[touch->getID()]);
+
+        addChild(touchPoint);
+        s_dic.setObject(touchPoint, touch->getID());
+    }
+
+
+}
+
+void MutiTouchTestLayer::ccTouchesMoved(Set *touches, Event *pEvent)
+{
+    SetIterator iter = touches->begin();
+    for (; iter != touches->end(); iter++)
+    {
+        Touch* touch = (Touch*)(*iter);
+        TouchPoint* touchPoint = (TouchPoint*)s_dic.objectForKey(touch->getID());
+        Point location = touch->getLocation();
+        touchPoint->setTouchPos(location);
+    }
+}
+
+void MutiTouchTestLayer::ccTouchesEnded(Set *touches, Event *pEvent)
+{
+    SetIterator iter = touches->begin();
+    for (; iter != touches->end(); iter++)
+    {
+        Touch* touch = (Touch*)(*iter);
+        TouchPoint* touchPoint = (TouchPoint*)s_dic.objectForKey(touch->getID());
+        removeChild(touchPoint, true);
+        s_dic.removeObjectForKey(touch->getID());
+    }
+}
+
+#else
+
+void MutiTouchTestLayer::ccTouchesBegan(Set *touches, Event  *event)
+{
+
     for ( auto &item: touches )
     {
         auto touch = item;
@@ -106,6 +159,8 @@ void MutiTouchTestLayer::onTouchesEnded(const std::vector<Touch*>& touches, Even
         s_dic.removeObjectForKey(touch->getID());
     }
 }
+
+#endif // CC_PLATFORM_TIZEN
 
 void MutiTouchTestLayer::onTouchesCancelled(const std::vector<Touch*>& touches, Event  *event)
 {
