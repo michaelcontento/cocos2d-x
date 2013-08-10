@@ -25,10 +25,21 @@ FontAtlas::~FontAtlas()
 
 void FontAtlas::relaseTextures()
 {
+#ifdef CC_PLATFORM_TIZEN
+    std::map<int, Texture2D *>::iterator it;
+    for( it = _atlasTextures.begin(); it != _atlasTextures.end(); it++ )
+    {
+        if ( it->second )
+            it->second->release();
+    }
+#else
     for( auto &item: _atlasTextures)
     {
         item.second->release();
     }
+#endif
+
+    _atlasTextures.clear();
 }
 
 void FontAtlas::addLetterDefinition(const FontLetterDefinition &letterDefinition)

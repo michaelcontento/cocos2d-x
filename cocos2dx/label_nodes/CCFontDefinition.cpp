@@ -214,6 +214,20 @@ FontAtlas * FontDefinitionTTF::createFontAtlas()
     // set the common line height
     retAtlas->setCommonLineHeight(_commonLineHeight * 0.8);
     
+#ifdef CC_PLATFORM_TIZEN
+    std::map<unsigned short, FontLetterDefinition>::iterator it;
+    for( it = _fontLettersDefinitionUTF16.begin(); it != _fontLettersDefinitionUTF16.end(); it++ )
+    {
+        if ( it->second.validDefinition )
+        {
+            FontLetterDefinition tempDefinition = it->second;
+            tempDefinition.offsetX = 0;
+            tempDefinition.anchorX = 0.0f;
+            tempDefinition.anchorY = 1.0f;
+            retAtlas->addLetterDefinition(tempDefinition);
+        }
+    }
+#else
     for( auto &item: _fontLettersDefinitionUTF16 )
     {
         if ( item.second.validDefinition )
@@ -225,6 +239,7 @@ FontAtlas * FontDefinitionTTF::createFontAtlas()
             retAtlas->addLetterDefinition(tempDefinition);
         }
     }
+#endif
     
     // done here
     return retAtlas;
