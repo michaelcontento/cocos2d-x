@@ -262,7 +262,7 @@ public:
     TableViewCell *cellAtIndex(unsigned int idx);
 
     // Overrides
-    virtual void scrollViewDidScroll(ScrollView* view) override;
+    virtual void scrollViewDidScroll(ScrollView* view, bool stopped) override;
     virtual void scrollViewDidZoom(ScrollView* view)  override {}
     virtual bool onTouchBegan(Touch *pTouch, Event *pEvent) override;
     virtual void onTouchMoved(Touch *pTouch, Event *pEvent) override;

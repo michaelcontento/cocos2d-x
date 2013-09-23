@@ -413,17 +413,17 @@ void UserDefault::setDataForKey(const char* pKey, const Data& value) {
 
 UserDefault* UserDefault::getInstance()
 {
-    initXMLFilePath();
-
-    // only create xml file one time
-    // the file exists after the program exit
-    if ((! isXMLFileExist()) && (! createXMLFile()))
-    {
-        return NULL;
-    }
-
     if (! _userDefault)
     {
+        initXMLFilePath();
+
+        // only create xml file one time
+        // the file exists after the program exit
+        if ((! isXMLFileExist()) && (! createXMLFile()))
+        {
+            return NULL;
+        }
+
         _userDefault = new UserDefault();
     }
 
