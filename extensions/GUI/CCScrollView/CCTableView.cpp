@@ -130,7 +130,7 @@ void TableView::reloadData()
     this->_updateContentSize();
     if (_dataSource->numberOfCellsInTableView(this) > 0)
     {
-        this->scrollViewDidScroll(this);
+        this->scrollViewDidScroll(this, true);
     }
 }
 
@@ -449,7 +449,7 @@ void TableView::_updateCellPositions() {
 
 }
 
-void TableView::scrollViewDidScroll(ScrollView* view)
+void TableView::scrollViewDidScroll(ScrollView* view, bool stopped)
 {
     unsigned int uCountOfItems = _dataSource->numberOfCellsInTableView(this);
     if (0 == uCountOfItems)
@@ -458,7 +458,7 @@ void TableView::scrollViewDidScroll(ScrollView* view)
     }
 
     if(_tableViewDelegate != NULL) {
-        _tableViewDelegate->scrollViewDidScroll(this);
+        _tableViewDelegate->scrollViewDidScroll(this, stopped);
     }
 
     unsigned int startIdx = 0, endIdx = 0, idx = 0, maxIdx = 0;

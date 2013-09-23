@@ -33,14 +33,6 @@ NS_CC_EXT_BEGIN
 #define SCROLL_DEACCEL_DIST  1.0f
 #define BOUNCE_DURATION      0.15f
 #define INSET_RATIO          0.2f
-#define MOVE_INCH            7.0f/160.0f
-
-static float convertDistanceFromPointToInch(float pointDis)
-{
-    float factor = ( EGLView::getInstance()->getScaleX() + EGLView::getInstance()->getScaleY() ) / 2;
-    return pointDis * factor / Device::getDPI();
-}
-
 
 ScrollView::ScrollView()
 : _zoomScale(0.0f)
@@ -145,7 +137,6 @@ bool ScrollView::isNodeVisible(Node* node)
     Rect viewRect;
     
     viewRect = Rect(-offset.x/scale, -offset.y/scale, size.width/scale, size.height/scale); 
-    
     return viewRect.intersectsRect(node->getBoundingBox());
 }
 
@@ -209,7 +200,7 @@ void ScrollView::setContentOffset(Point offset, bool animated/* = false*/)
 
         if (_delegate != NULL)
         {
-            _delegate->scrollViewDidScroll(this);   
+            _delegate->scrollViewDidScroll(this, !_touchMoved);
         }
     }
 }
@@ -418,7 +409,7 @@ void ScrollView::stoppedAnimatedScroll(Node * node)
     // After the animation stopped, "scrollViewDidScroll" should be invoked, this could fix the bug of lack of tableview cells.
     if (_delegate != NULL)
     {
-        _delegate->scrollViewDidScroll(this);
+        _delegate->scrollViewDidScroll(this, true);
     }
 }
 
@@ -432,7 +423,7 @@ void ScrollView::performedAnimatedScroll(float dt)
 
     if (_delegate != NULL)
     {
-        _delegate->scrollViewDidScroll(this);
+        _delegate->scrollViewDidScroll(this, false);
     }
 }
 
@@ -674,9 +665,9 @@ void ScrollView::onTouchMoved(Touch* touch, Event* event)
                 dis = sqrtf(moveDistance.x*moveDistance.x + moveDistance.y*moveDistance.y);
             }
 
-            if (!_touchMoved && fabs(convertDistanceFromPointToInch(dis)) < MOVE_INCH )
+            if (!_touchMoved && fabs(dis) < minMoveDistance)
             {
-                //CCLOG("Invalid movement, distance = [%f, %f], disInch = %f", moveDistance.x, moveDistance.y);
+                //CCLOG("Invalid movement, distance = [%f, %f], disInch = %f", moveDistance.x, moveDistance.y, minMoveDistance);
                 return;
             }
             

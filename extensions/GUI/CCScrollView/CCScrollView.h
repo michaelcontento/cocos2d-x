@@ -46,11 +46,13 @@ public:
      * @lua NA
      */
     virtual ~ScrollViewDelegate() {}
+
     /**
      * @js NA
      * @lua NA
      */
-    virtual void scrollViewDidScroll(ScrollView* view) = 0;
+    virtual void scrollViewDidScroll(ScrollView* view, bool stopped) = 0;
+
     /**
      * @js NA
      * @lua NA
@@ -73,6 +75,8 @@ public:
         VERTICAL,
         BOTH
     };
+    float minMoveDistance = 0;
+
     /**
      * Returns an autoreleased scroll view object.
      *

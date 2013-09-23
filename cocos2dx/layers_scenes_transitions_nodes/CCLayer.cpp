@@ -135,6 +135,42 @@ void Layer::addTouchListener()
     }
 }
 
+void Layer::addTouchListenerWithFixedPriority(const int priority)
+{
+    if (_touchListener != nullptr)
+        return;
+
+    auto dispatcher = EventDispatcher::getInstance();
+
+    if( _touchMode == Touch::DispatchMode::ALL_AT_ONCE )
+    {
+        // Register Touch Event
+        auto listener = EventListenerTouch::create(Touch::DispatchMode::ALL_AT_ONCE);
+
+        listener->onTouchesBegan = CC_CALLBACK_2(Layer::onTouchesBegan, this);
+        listener->onTouchesMoved = CC_CALLBACK_2(Layer::onTouchesMoved, this);
+        listener->onTouchesEnded = CC_CALLBACK_2(Layer::onTouchesEnded, this);
+        listener->onTouchesCancelled = CC_CALLBACK_2(Layer::onTouchesCancelled, this);
+
+        dispatcher->addEventListenerWithFixedPriority(listener, priority);
+        _touchListener = listener;
+    }
+    else
+    {
+        // Register Touch Event
+        auto listener = EventListenerTouch::create(Touch::DispatchMode::ONE_BY_ONE);
+        listener->setSwallowTouches(_swallowsTouches);
+
+        listener->onTouchBegan = CC_CALLBACK_2(Layer::onTouchBegan, this);
+        listener->onTouchMoved = CC_CALLBACK_2(Layer::onTouchMoved, this);
+        listener->onTouchEnded = CC_CALLBACK_2(Layer::onTouchEnded, this);
+        listener->onTouchCancelled = CC_CALLBACK_2(Layer::onTouchCancelled, this);
+
+        dispatcher->addEventListenerWithFixedPriority(listener, priority);
+        _touchListener = listener;
+    }
+}
+
 int Layer::executeScriptTouchHandler(EventTouch::EventCode eventType, Touch* touch)
 {
     if (kScriptTypeNone != _scriptType)
@@ -183,6 +219,16 @@ void Layer::setTouchEnabled(bool enabled)
                 EventDispatcher::getInstance()->removeEventListener(_touchListener);
                 _touchListener = nullptr;
             }
+        }
+    }
+}
+
+void Layer::setTouchEnabledWithFixedPriority(const int priority)
+{
+    if (!_touchEnabled) {
+        _touchEnabled = true;
+        if (_running) {
+            this->addTouchListenerWithFixedPriority(priority);
         }
     }
 }
