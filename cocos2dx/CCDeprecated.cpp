@@ -1,26 +1,26 @@
 /****************************************************************************
- Copyright (c) 2013 cocos2d-x.org
- 
- http://www.cocos2d-x.org
- 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
- ****************************************************************************/
+*  Copyright (c) 2013 cocos2d-x.org
+*
+*  http://www.cocos2d-x.org
+*
+*  Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+*
+*  The above copyright notice and this permission notice shall be included in
+*  all copies or substantial portions of the Software.
+*
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+*  THE SOFTWARE.
+****************************************************************************/
 
 #include "cocos2d.h"
 
@@ -62,9 +62,9 @@ const char* kCCUniformMVMatrix_s = GLProgram::UNIFORM_NAME_MV_MATRIX;
 const char* kCCUniformMVPMatrix_s = GLProgram::UNIFORM_NAME_MVP_MATRIX;
 const char* kCCUniformTime_s = GLProgram::UNIFORM_NAME_TIME;
 const char* kCCUniformSinTime_s = GLProgram::UNIFORM_NAME_SIN_TIME;
-const char* kCCUniformCosTime_s	= GLProgram::UNIFORM_NAME_COS_TIME;
+const char* kCCUniformCosTime_s = GLProgram::UNIFORM_NAME_COS_TIME;
 const char* kCCUniformRandom01_s = GLProgram::UNIFORM_NAME_RANDOM01;
-const char* kCCUniformSampler_s	= GLProgram::UNIFORM_NAME_SAMPLER;
+const char* kCCUniformSampler_s = GLProgram::UNIFORM_NAME_SAMPLER;
 const char* kCCUniformAlphaTestValue = GLProgram::UNIFORM_NAME_ALPHA_TEST_VALUE;
 
 // Attribute names
@@ -82,57 +82,59 @@ void ccDrawFree()
     DrawPrimitives::free();
 }
 
-void ccDrawPoint( const Point& point )
+void ccDrawPoint(const Point& point)
 {
     DrawPrimitives::drawPoint(point);
 }
 
-void ccDrawPoints( const Point *points, unsigned int numberOfPoints )
+void ccDrawPoints(const Point* points, unsigned int numberOfPoints)
 {
     DrawPrimitives::drawPoints(points, numberOfPoints);
 }
 
-void ccDrawLine( const Point& origin, const Point& destination )
+void ccDrawLine(const Point& origin, const Point& destination)
 {
     DrawPrimitives::drawLine(origin, destination);
 }
 
-void ccDrawRect( Point origin, Point destination )
+void ccDrawRect(Point origin, Point destination)
 {
     DrawPrimitives::drawRect(origin, destination);
 }
 
-void ccDrawSolidRect( Point origin, Point destination, Color4F color )
+void ccDrawSolidRect(Point origin, Point destination, Color4F color)
 {
     DrawPrimitives::drawSolidRect(origin, destination, color);
 }
 
-void ccDrawPoly( const Point *vertices, unsigned int numOfVertices, bool closePolygon )
+void ccDrawPoly(const Point* vertices, unsigned int numOfVertices, bool closePolygon)
 {
     DrawPrimitives::drawPoly(vertices, numOfVertices, closePolygon);
 }
 
-void ccDrawSolidPoly( const Point *poli, unsigned int numberOfPoints, Color4F color )
+void ccDrawSolidPoly(const Point* poli, unsigned int numberOfPoints, Color4F color)
 {
     DrawPrimitives::drawSolidPoly(poli, numberOfPoints, color);
 }
 
-void ccDrawCircle( const Point& center, float radius, float angle, unsigned int segments, bool drawLineToCenter, float scaleX, float scaleY)
+void ccDrawCircle(const Point& center, float radius, float angle, unsigned int segments, bool drawLineToCenter,
+                  float scaleX, float scaleY)
 {
     DrawPrimitives::drawCircle(center, radius, angle, segments, drawLineToCenter, scaleX, scaleY);
 }
 
-void ccDrawCircle( const Point& center, float radius, float angle, unsigned int segments, bool drawLineToCenter)
+void ccDrawCircle(const Point& center, float radius, float angle, unsigned int segments, bool drawLineToCenter)
 {
     DrawPrimitives::drawCircle(center, radius, angle, segments, drawLineToCenter);
 }
 
-void ccDrawSolidCircle( const Point& center, float radius, float angle, unsigned int segments, float scaleX, float scaleY)
+void ccDrawSolidCircle(const Point& center, float radius, float angle, unsigned int segments, float scaleX,
+                       float scaleY)
 {
     DrawPrimitives::drawSolidCircle(center, radius, angle, segments, scaleX, scaleY);
 }
 
-void ccDrawSolidCircle( const Point& center, float radius, float angle, unsigned int segments)
+void ccDrawSolidCircle(const Point& center, float radius, float angle, unsigned int segments)
 {
     DrawPrimitives::drawSolidCircle(center, radius, angle, segments);
 }
@@ -142,32 +144,33 @@ void ccDrawQuadBezier(const Point& origin, const Point& control, const Point& de
     DrawPrimitives::drawQuadBezier(origin, control, destination, segments);
 }
 
-void ccDrawCubicBezier(const Point& origin, const Point& control1, const Point& control2, const Point& destination, unsigned int segments)
+void ccDrawCubicBezier(const Point& origin, const Point& control1, const Point& control2, const Point& destination,
+                       unsigned int segments)
 {
     DrawPrimitives::drawCubicBezier(origin, control1, control2, destination, segments);
 }
 
-void ccDrawCatmullRom( PointArray *arrayOfControlPoints, unsigned int segments )
+void ccDrawCatmullRom(PointArray* arrayOfControlPoints, unsigned int segments)
 {
     DrawPrimitives::drawCatmullRom(arrayOfControlPoints, segments);
 }
 
-void ccDrawCardinalSpline( PointArray *config, float tension,  unsigned int segments )
+void ccDrawCardinalSpline(PointArray* config, float tension, unsigned int segments)
 {
     DrawPrimitives::drawCardinalSpline(config, tension, segments);
 }
 
-void ccDrawColor4B( GLubyte r, GLubyte g, GLubyte b, GLubyte a )
+void ccDrawColor4B(GLubyte r, GLubyte g, GLubyte b, GLubyte a)
 {
     DrawPrimitives::setDrawColor4B(r, g, b, a);
 }
 
-void ccDrawColor4F( GLfloat r, GLfloat g, GLfloat b, GLfloat a )
+void ccDrawColor4F(GLfloat r, GLfloat g, GLfloat b, GLfloat a)
 {
     DrawPrimitives::setDrawColor4F(r, g, b, a);
 }
 
-void ccPointSize( GLfloat pointSize )
+void ccPointSize(GLfloat pointSize)
 {
     DrawPrimitives::setPointSize(pointSize);
 }
