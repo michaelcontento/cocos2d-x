@@ -116,17 +116,17 @@ void Configuration::gatherGPUInfo()
     _valueDict->setObject(String::create((const char*)glGetString(GL_RENDERER)), "gl.renderer");
     _valueDict->setObject(String::create((const char*)glGetString(GL_VERSION)), "gl.version");
 
-    _glExtensions = (char*)glGetString(GL_EXTENSIONS);
+    _glExtensions = const_cast<char*>((const char*)glGetString(GL_EXTENSIONS));
 
     glGetIntegerv(GL_MAX_TEXTURE_SIZE, &_maxTextureSize);
-    _valueDict->setObject(Integer::create((int)_maxTextureSize), "gl.max_texture_size");
+    _valueDict->setObject(Integer::create(static_cast<int>(_maxTextureSize)), "gl.max_texture_size");
 
     glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &_maxTextureUnits);
-    _valueDict->setObject(Integer::create((int)_maxTextureUnits), "gl.max_texture_units");
+    _valueDict->setObject(Integer::create(static_cast<int>(_maxTextureUnits)), "gl.max_texture_units");
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     glGetIntegerv(GL_MAX_SAMPLES_APPLE, &_maxSamplesAllowed);
-    _valueDict->setObject(Integer::create((int)_maxSamplesAllowed), "gl.max_samples_allowed");
+    _valueDict->setObject(Integer::create(static_cast<int>(_maxSamplesAllowed)), "gl.max_samples_allowed");
 #endif
 
     _supportsETC1 = checkForGLExtension("GL_OES_compressed_ETC1_RGB8_texture");

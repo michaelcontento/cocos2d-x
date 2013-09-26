@@ -484,6 +484,9 @@ protected:
     /* store the fps string */
     char* _FPS;
 
+    /* size of the char buffer of _FPS */
+    static constexpr int _bufferSizeFPS = 10;
+
     /* This object will be visited after the scene. Useful to hook a notification node */
     Node* _notificationNode;
 

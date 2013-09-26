@@ -120,7 +120,7 @@ bool Director::init(void)
     _SPFLabel = nullptr;
     _drawsLabel = nullptr;
     _totalFrames = _frames = 0;
-    _FPS = new char[10];
+    _FPS = new char[_bufferSizeFPS];
     _lastUpdate = new struct timeval;
 
     // paused ?
@@ -573,7 +573,7 @@ void Director::popScene(void)
         end();
     } else {
         _sendCleanupToScene = true;
-        _nextScene = (Scene*)_scenesStack->getObjectAtIndex(c - 1);
+        _nextScene = dynamic_cast<Scene*>(_scenesStack->getObjectAtIndex(c - 1));
     }
 }
 
@@ -600,7 +600,7 @@ void Director::popToSceneStackLevel(int level)
 
     // pop stack until reaching desired level
     while (c > level) {
-        Scene* current = (Scene*)_scenesStack->getLastObject();
+        Scene* current = dynamic_cast<Scene*>(_scenesStack->getLastObject());
 
         if (current->isRunning()) {
             current->onExitTransitionDidStart();
@@ -612,7 +612,7 @@ void Director::popToSceneStackLevel(int level)
         --c;
     }
 
-    _nextScene = (Scene*)_scenesStack->getLastObject();
+    _nextScene = dynamic_cast<Scene*>(_scenesStack->getLastObject());
     _sendCleanupToScene = false;
 }
 
@@ -752,17 +752,17 @@ void Director::showStats()
     if (_displayStats) {
         if (_FPSLabel && _SPFLabel && _drawsLabel) {
             if (_accumDt > CC_DIRECTOR_STATS_INTERVAL) {
-                sprintf(_FPS, "%.3f", _secondsPerFrame);
+                snprintf(_FPS, _bufferSizeFPS, "%.3f", _secondsPerFrame);
                 _SPFLabel->setString(_FPS);
 
                 _frameRate = _frames / _accumDt;
                 _frames = 0;
                 _accumDt = 0;
 
-                sprintf(_FPS, "%.1f", _frameRate);
+                snprintf(_FPS, _bufferSizeFPS, "%.1f", _frameRate);
                 _FPSLabel->setString(_FPS);
 
-                sprintf(_FPS, "%4lu", (unsigned long)g_uNumberOfDraws);
+                snprintf(_FPS, _bufferSizeFPS, "%4d", g_uNumberOfDraws);
                 _drawsLabel->setString(_FPS);
             }
 

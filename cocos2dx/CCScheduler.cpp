@@ -605,7 +605,7 @@ void Scheduler::unscheduleScriptEntry(unsigned int uScheduleScriptEntryID)
     for (int i = _scriptHandlerEntries->count() - 1; i >= 0; i--) {
         SchedulerScriptHandlerEntry* pEntry =
             static_cast<SchedulerScriptHandlerEntry*>(_scriptHandlerEntries->getObjectAtIndex(i));
-        if (pEntry->getEntryId() == (int)uScheduleScriptEntryID) {
+        if (pEntry->getEntryId() == static_cast<int>(uScheduleScriptEntryID)) {
             pEntry->markedForDeletion();
             break;
         }
