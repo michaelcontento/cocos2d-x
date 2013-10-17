@@ -147,6 +147,7 @@ bool FontAtlasCache::releaseFontAtlas(FontAtlas *atlas)
     }
     
     return false;
+#endif
 }
 
 NS_CC_END
