@@ -7,8 +7,11 @@
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
-			<triggers>clean,full,incremental,</triggers>
 			<arguments>
+				<dictionary>
+					<key>?children?</key>
+					<value>?name?=outputEntries\|?children?=?name?=entry\\\\\\\|\\\|?name?=entry\\\\\\\|\\\|?name?=entry\\\\\\\|\\\|\||</value>
+				</dictionary>
 				<dictionary>
 					<key>?name?</key>
 					<value></value>
@@ -31,7 +34,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/cocos2dx/Debug-Tizen-Device}</value>
+					<value>${workspace_loc:/cocos2dx/Debug-Tizen-Emulator}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
@@ -43,7 +46,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.enableAutoBuild</key>
-					<value>false</value>
+					<value>true</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.enableCleanBuild</key>
@@ -178,22 +181,17 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>src/event_dispatcher</name>
+			<type>2</type>
+			<locationURI>PARENT-1-PROJECT_LOC/event_dispatcher</locationURI>
+		</link>
+		<link>
 			<name>src/include</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>src/kazmath</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>src/keyboard_dispatcher</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>src/keypad_dispatcher</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
@@ -259,11 +257,6 @@
 		</link>
 		<link>
 			<name>src/tilemap_parallax_nodes</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>src/touch_dispatcher</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
@@ -648,36 +641,6 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>src/keyboard_dispatcher/CCKeyboardDispatcher.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/keyboard_dispatcher/CCKeyboardDispatcher.cpp</locationURI>
-		</link>
-		<link>
-			<name>src/keyboard_dispatcher/CCKeyboardDispatcher.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/keyboard_dispatcher/CCKeyboardDispatcher.h</locationURI>
-		</link>
-		<link>
-			<name>src/keypad_dispatcher/CCKeypadDelegate.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/keypad_dispatcher/CCKeypadDelegate.cpp</locationURI>
-		</link>
-		<link>
-			<name>src/keypad_dispatcher/CCKeypadDelegate.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/keypad_dispatcher/CCKeypadDelegate.h</locationURI>
-		</link>
-		<link>
-			<name>src/keypad_dispatcher/CCKeypadDispatcher.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/keypad_dispatcher/CCKeypadDispatcher.cpp</locationURI>
-		</link>
-		<link>
-			<name>src/keypad_dispatcher/CCKeypadDispatcher.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/keypad_dispatcher/CCKeypadDispatcher.h</locationURI>
-		</link>
-		<link>
 			<name>src/label_nodes/CCFont.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/label_nodes/CCFont.cpp</locationURI>
@@ -971,11 +934,6 @@
 			<name>src/particle_nodes/firePngData.h</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/particle_nodes/firePngData.h</locationURI>
-		</link>
-		<link>
-			<name>src/platform/CCAccelerometerDelegate.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/platform/CCAccelerometerDelegate.h</locationURI>
 		</link>
 		<link>
 			<name>src/platform/CCApplicationProtocol.h</name>
@@ -1478,41 +1436,6 @@
 			<locationURI>PARENT-1-PROJECT_LOC/tilemap_parallax_nodes/CCTileMapAtlas.h</locationURI>
 		</link>
 		<link>
-			<name>src/touch_dispatcher/CCTouch.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/touch_dispatcher/CCTouch.cpp</locationURI>
-		</link>
-		<link>
-			<name>src/touch_dispatcher/CCTouch.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/touch_dispatcher/CCTouch.h</locationURI>
-		</link>
-		<link>
-			<name>src/touch_dispatcher/CCTouchDelegateProtocol.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/touch_dispatcher/CCTouchDelegateProtocol.h</locationURI>
-		</link>
-		<link>
-			<name>src/touch_dispatcher/CCTouchDispatcher.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/touch_dispatcher/CCTouchDispatcher.cpp</locationURI>
-		</link>
-		<link>
-			<name>src/touch_dispatcher/CCTouchDispatcher.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/touch_dispatcher/CCTouchDispatcher.h</locationURI>
-		</link>
-		<link>
-			<name>src/touch_dispatcher/CCTouchHandler.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/touch_dispatcher/CCTouchHandler.cpp</locationURI>
-		</link>
-		<link>
-			<name>src/touch_dispatcher/CCTouchHandler.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/touch_dispatcher/CCTouchHandler.h</locationURI>
-		</link>
-		<link>
 			<name>src/kazmath/include/kazmath</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -1621,16 +1544,6 @@
 			<name>src/platform/tizen/.CCCommon.cpp.swp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/platform/tizen/.CCCommon.cpp.swp</locationURI>
-		</link>
-		<link>
-			<name>src/platform/tizen/CCAccelerometer.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/platform/tizen/CCAccelerometer.cpp</locationURI>
-		</link>
-		<link>
-			<name>src/platform/tizen/CCAccelerometer.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/platform/tizen/CCAccelerometer.h</locationURI>
 		</link>
 		<link>
 			<name>src/platform/tizen/CCApplication.cpp</name>
