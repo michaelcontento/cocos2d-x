@@ -925,8 +925,8 @@ void Sprite::visit()
 {
     if (_physicsBody)
     {
-        Node::setPosition(_physicsBody->getPosition());
-        Node::setRotation(_physicsBody->getRotation());
+        //Node::setPosition(_physicsBody->getPosition());
+        //Node::setRotation(_physicsBody->getRotation());
         SET_DIRTY_RECURSIVELY();
     }
     
