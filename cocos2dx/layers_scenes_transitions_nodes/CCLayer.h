@@ -99,7 +99,7 @@ public:
     virtual void onTouchesCancelled(const std::vector<Touch*>&touches, Event *event);
     
     /** @deprecated Please override onAcceleration */
-    CC_DEPRECATED_ATTRIBUTE virtual void didAccelerate(Acceleration* accelerationValue) final {};
+    CC_DEPRECATED_ATTRIBUTE virtual void didAccelerate(Acceleration* accelerationValue) {};
     
     virtual void onAcceleration(Acceleration* acc, Event* event);
 
@@ -113,7 +113,7 @@ public:
     }
     @since v0.8.0
     */
-    CC_DEPRECATED_ATTRIBUTE virtual void registerWithTouchDispatcher() final {};
+    CC_DEPRECATED_ATTRIBUTE virtual void registerWithTouchDispatcher() {};
 
     /** whether or not it will receive Touch events.
     You can enable / disable touch events with this property.
@@ -147,20 +147,20 @@ public:
     virtual void setKeyboardEnabled(bool value);
     
     /** Please use onKeyPressed instead. */
-    virtual void keyPressed(int keyCode) final {};
+    virtual void keyPressed(int keyCode) {};
     
     /** Please use onKeyReleased instead. */
-    virtual void keyReleased(int keyCode) final {};
+    virtual void keyReleased(int keyCode) {};
     
     virtual void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
     virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
 
-    CC_DEPRECATED_ATTRIBUTE virtual bool isKeypadEnabled() const final { return isKeyboardEnabled(); };
+    CC_DEPRECATED_ATTRIBUTE virtual bool isKeypadEnabled() const { return isKeyboardEnabled(); };
     CC_DEPRECATED_ATTRIBUTE virtual void setKeypadEnabled(bool value) { setKeyboardEnabled(value); };
 
     /** @deprecated Please override onKeyReleased and check the keycode of KeyboardEvent::KeyCode::Menu(KEY_BACKSPACE) instead. */
-    CC_DEPRECATED_ATTRIBUTE virtual void keyBackClicked() final {};
-    CC_DEPRECATED_ATTRIBUTE virtual void keyMenuClicked() final {};
+    CC_DEPRECATED_ATTRIBUTE virtual void keyBackClicked() {};
+    CC_DEPRECATED_ATTRIBUTE virtual void keyMenuClicked() {};
     //
     // Overrides
     //
